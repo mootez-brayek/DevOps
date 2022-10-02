@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+
+  api:
+    container_name: api
+    build: 
+      context: .
+    ports:
+      - "9090:9090"
+
+
+  db:
+    image: mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DB: tp_achat
+      MYSQL_ROOT_PASSWORD: test
+    volumes:
+      - tp_achat_data:/var/lib/mysql
+    restart: unless-stopped
+
+  adminer:
+    image: adminer
+    ports:
+      - '8081:8080'
+    restart: unless-stopped
+
+volumes:
+  tp_achat_data:
