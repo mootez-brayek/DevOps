@@ -1,0 +1,17 @@
+server:
+  port: ${SPRING_LOCAL_PORT}
+  servlet:
+    context-path: /SpringMVC
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://db:${MYSQLDB_LOCAL_PORT}/${MYSQLDB_DATABASE}?createDatabaseIfNotExist=true
+    username: ${MYSQLDB_USER}
+    password: ${MYSQLDB_ROOT_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect

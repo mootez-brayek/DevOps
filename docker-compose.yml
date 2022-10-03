@@ -1,21 +1,25 @@
 version: '3.1'
 services:
-
   api:
     container_name: api
     build: 
       context: .
     ports:
-      - "9090:9090"
+      - ${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}
+    depends_on:
+      - db
+    env_file:
+      - ./.env
+    restart: always
 
 
   db:
     image: mysql
     ports:
-      - '3306:3306'
+      - ${MYSQLDB_LOCAL_PORT}:${MYSQLDB_DOCKER_PORT}
     environment:
-      MYSQL_DB: tp_achat
-      MYSQL_ROOT_PASSWORD: test
+      - MYSQL_DB=${MYSQLDB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQLDB_ROOT_PASSWORD}
     volumes:
       - tp_achat_data:/var/lib/mysql
     restart: unless-stopped
