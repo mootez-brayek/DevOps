@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.esprit.examen.dto.ReglementDto;
-import com.esprit.examen.exceptions.ReglementNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,12 +38,24 @@ public class ReglementServiceImpl implements IReglementService {
 		ReglementDto result =  reglementRepository
 				.findById(id)
 				.map(ReglementDto::toDto)
-				.orElseThrow(()->new ReglementNotFoundException("reglement avec l'id : "+id +" est introuvable"));
+				.orElse(null);
 		log.info("out of method retrieveReglement ReglementServic");
 		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
 		return result;
 	}
+
+	@Override
+	public ReglementDto updateReglement(ReglementDto r) {
+		long start = System.currentTimeMillis();
+		log.info("In method updateReglement of ReglementServic");
+		Reglement updatedReglement = reglementRepository.save(ReglementDto.toEntity(r));
+		log.info("out of method updateReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		return ReglementDto.toDto(updatedReglement);
+	}
+
 
 	@Override
 	public void deleteReglement(ReglementDto r) {
