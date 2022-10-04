@@ -64,19 +64,13 @@ public class ReglementServiceImplTest {
                 .montantRestant(20F)
                 .payee(true)
                 .build();
-        ReglementDto reglementUpdate = ReglementDto
-                .builder()
-                .dateReglement(new Date())
-                .montantPaye(160.00F)
-                .montantRestant(20F)
-                .payee(true)
-                .build();
         //add new reglement
-        reglementService.addReglement(reglement);
+        ReglementDto savedReglement = reglementService.addReglement(reglement);
+        savedReglement.setMontantPaye(160F);
         // update a field in a reglement service
-        ReglementDto updatedReglement = reglementService.updateReglement(reglementUpdate);
+        ReglementDto updatedReglement = reglementService.updateReglement(savedReglement);
         // Assert if the new updated field is the same as expected !
-        assertEquals(Optional.ofNullable(updatedReglement.getMontantPaye()),Optional.of(reglementUpdate.getMontantPaye()));
+        assertEquals(Optional.ofNullable(updatedReglement.getMontantPaye()),Optional.of(savedReglement.getMontantPaye()));
         // if every thing goes as expected then we delete the mock reglement added for test
         reglementService.deleteReglement(updatedReglement);
 
