@@ -1,19 +1,21 @@
 package com.esprit.examen.services;
 
 import java.util.List;
-import com.esprit.examen.entities.Operateur;
+
+import com.esprit.examen.dto.OperateurDto;
+
 
 
 public interface IOperateurService {
 
-	List<Operateur> retrieveAllOperateurs();
+	List<OperateurDto> retrieveAllOperateurs();
 
-	Operateur addOperateur(Operateur o);
+	OperateurDto addOperateur(OperateurDto o);
 
 	void deleteOperateur(Long id);
 
-	Operateur updateOperateur(Operateur o);
+	OperateurDto updateOperateur(OperateurDto o);
 
-	Operateur retrieveOperateur(Long id);
+	OperateurDto retrieveOperateur(Long id);
 
 }
