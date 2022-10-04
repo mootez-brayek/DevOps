@@ -9,6 +9,7 @@ public interface IReglementService {
 	List<ReglementDto> retrieveAllReglements();
 	ReglementDto addReglement(ReglementDto r);
 	ReglementDto retrieveReglement(Long id);
+	void deleteReglement(ReglementDto r);
 	List<ReglementDto> retrieveReglementByFacture(Long idFacture);
 	float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate); 
 

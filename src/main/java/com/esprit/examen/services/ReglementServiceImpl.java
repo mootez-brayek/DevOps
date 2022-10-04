@@ -47,6 +47,16 @@ public class ReglementServiceImpl implements IReglementService {
 	}
 
 	@Override
+	public void deleteReglement(ReglementDto r) {
+		long start = System.currentTimeMillis();
+		log.info("In method deleteReglement of ReglementServic");
+		reglementRepository.delete(ReglementDto.toEntity(r));
+		log.info("out of method deleteReglement ReglementServic");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+	}
+
+	@Override
 	public List<ReglementDto> retrieveReglementByFacture(Long idFacture) {
 		long start = System.currentTimeMillis();
 		log.info("In method retrieveReglementByFacture of ReglementServic");

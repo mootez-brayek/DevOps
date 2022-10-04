@@ -12,8 +12,8 @@ import java.util.List;
 @Builder
 public class ReglementDto {
     private Long idReglement;
-    private float montantPaye;
-    private float montantRestant;
+    private Float montantPaye;
+    private Float montantRestant;
     private Boolean payee;
     private Date dateReglement;
 
