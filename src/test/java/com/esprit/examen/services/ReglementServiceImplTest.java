@@ -78,10 +78,25 @@ public class ReglementServiceImplTest {
     }
     @Test
     public void TestRetrieveAllReglements(){
+        ReglementDto reglement = ReglementDto
+                .builder()
+                .dateReglement(new Date())
+                .montantPaye(140.00F)
+                .montantRestant(20F)
+                .payee(true)
+                .build();
+        log.info("add new test reglement");
+        // add a reglement for tets
+        ReglementDto savedReglement = reglementService.addReglement(reglement);
         //call retrieve all method
+        log.info("retrieve all reglements");
         List<ReglementDto> reglementsList = reglementService.retrieveAllReglements();
         // test if the list returned from the retrieve all method is not empty
+        log.info("assert that reglement list is not empty");
         assertNotEquals(reglementsList.size(),0);
+        log.info("delete the test reglement");
+        //delete the test reglement object
+        reglementService.deleteReglement(savedReglement);
 
     }
 }
