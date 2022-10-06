@@ -1,5 +1,8 @@
 pipeline  {
      agent any
+     environment {
+             SONAR_TOKEN = credentials('sonarqube-token')
+         }
      stages{
           stage('Chekout GIT'){
              steps{
@@ -22,7 +25,7 @@ pipeline  {
          }
           stage("build & SonarQube analysis") {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=5d6078ebd99785c304b921ff3a089acfafb891e7'
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=$SONAR_TOKEN'
             }
           }
      }
