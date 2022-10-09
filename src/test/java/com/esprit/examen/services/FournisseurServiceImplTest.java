@@ -1,7 +1,9 @@
 package com.esprit.examen.services;
 
 import com.esprit.examen.entities.CategorieFournisseur;
+import com.esprit.examen.entities.DetailFournisseur;
 import com.esprit.examen.entities.Fournisseur;
+import com.esprit.examen.repositories.DetailFournisseurRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,9 @@ import static org.junit.Assert.*;
 public class FournisseurServiceImplTest {
     @Autowired
     IFournisseurService fournisseurSer;
+    @Autowired
+    DetailFournisseurRepository detailFournisseurRepository;
+
 
     @Test
     public void testAddFournisseur(){
@@ -59,6 +64,19 @@ public class FournisseurServiceImplTest {
         Fournisseur updatedFournisseur = fournisseurSer.updateFournisseur(savedFournisseur);
         assertEquals(Optional.ofNullable(updatedFournisseur.getCode()),Optional.of(savedFournisseur.getCode()));
         fournisseurSer.deleteFournisseur(updatedFournisseur.getIdFournisseur());
+    }
+
+
+    @Test
+    public void testSaveDetailFournisseur(){
+        Fournisseur f= new Fournisseur("fournisseur5","aaa", CategorieFournisseur.CONVENTIONNE);
+        DetailFournisseur d = new DetailFournisseur("fournisseur5@gmail.com","centre ville","abcd");
+        Fournisseur savedFournisseur= fournisseurSer.addFournisseur(f);
+        DetailFournisseur savedDetailsFournisseur= detailFournisseurRepository.save(d);
+        f.setDetailFournisseur(d);
+        assertNotNull(savedFournisseur.getDetailFournisseur());
+        fournisseurSer.deleteFournisseur(savedFournisseur.getIdFournisseur());
+        detailFournisseurRepository.delete(savedDetailsFournisseur);
     }
 
 }

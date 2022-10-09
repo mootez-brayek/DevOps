@@ -33,5 +33,11 @@ public class DetailFournisseur implements Serializable{
 	@OneToOne(mappedBy="detailFournisseur")
 	@JsonIgnore
 	private Fournisseur fournisseur;
-	
+
+
+	public DetailFournisseur(String email, String adresse, String matricule) {
+		this.email = email;
+		this.adresse = adresse;
+		this.matricule = matricule;
+	}
 }
