@@ -35,7 +35,7 @@ pipeline  {
           }
           stage("deploy to nexus") {
             steps {
-                sh 'mvn deploy:deploy-file -DgroupId=<group-id> \
+                sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen \
                     -DartifactId=tpAchatProject \
                     -Dversion=1.0 \
                     -Dpackaging=jar \
