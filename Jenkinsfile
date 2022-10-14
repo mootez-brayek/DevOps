@@ -1,7 +1,7 @@
 pipeline  {
      agent any
      environment {
-             SONAR_TOKEN = credentials('sonarqube-token')
+             SONAR_TOKEN = credentials('sonar-token')
          }
      stages{
           stage('Chekout GIT'){
