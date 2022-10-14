@@ -28,6 +28,22 @@ pipeline  {
                 sh 'mvn sonar:sonar -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=$SONAR_TOKEN'
             }
           }
+           stage("build jar file") {
+            steps {
+                sh 'mvn package'
+            }
+          }
+          stage("deploy to nexus") {
+            steps {
+                sh 'mvn deploy:deploy-file -DgroupId=<group-id> \
+                    -DartifactId=tpAchatProject \
+                    -Dversion=1.0 \
+                    -Dpackaging=jar \
+                    -Dfile=./target \
+                    -DrepositoryId=esprit-devops \
+                    -Durl=http://172.10.0.140:8081/repository/esprit-devops/'
+            }
+          }
      }
 
  }
