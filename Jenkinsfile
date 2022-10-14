@@ -39,7 +39,7 @@ pipeline  {
                     -DartifactId=tpAchatProject \
                     -Dversion=1.0 \
                     -Dpackaging=jar \
-                    -Dfile=./target \
+                    -Dfile=./target/tpAchatProject.jar \
                     -DrepositoryId=esprit-devops \
                     -Durl=http://172.10.0.140:8081/repository/esprit-devops/'
             }
