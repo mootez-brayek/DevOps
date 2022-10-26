@@ -11,14 +11,6 @@ pipeline  {
              dockerImage = ''
          }
      stages{
-         
-         stage('print sonar token'){
-             steps{
-                 echo '$SONAR_TOKEN';
-             }
-             
-         }
-         
           stage('Chekout GIT'){
             steps{
                  echo 'Pulling...';
@@ -28,17 +20,11 @@ pipeline  {
          }
           stage('cleaning java Project'){
              steps{
-                 sh 'mvn clean'
+                 sh 'mvn clean compile'
 
              }
          }
-         stage('compiling  java Project'){
-             steps{
-                 sh 'mvn compile'
-
-             }
-         }
-          stage("build & SonarQube analysis") {
+          stage("SonarQube analysis") {
               steps{
                   withSonarQubeEnv('sonarServer') {
                     sh 'mvn sonar:sonar -Dsonar.host.url=http://172.10.0.140:9000 -Dsonar.login=$SONAR_TOKEN'
@@ -46,7 +32,7 @@ pipeline  {
               }
               
           }
-          stage("Quality gate") {
+          stage("SonarQube Quality gate") {
             steps {
                 waitForQualityGate(abortPipeline: false) 
                 
@@ -70,7 +56,7 @@ pipeline  {
               }
           }
           
-          stage('Building our image') { 
+          stage('Building docker images') { 
             steps { 
                 script { 
                     dockerImage = docker.build registry + ":$BUILD_NUMBER" 
@@ -79,7 +65,7 @@ pipeline  {
             } 
         }
 
-        stage('Deploy our image') { 
+        stage('Deploy docker images') { 
             steps { 
                 script { 
                     docker.withRegistry( '', registryCredential ) { 
