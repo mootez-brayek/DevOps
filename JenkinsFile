@@ -1,0 +1,10 @@
+pipeline{
+    agent any
+    stages{
+        stage('checkout git'){
+            steps{
+               git branch: 'service/fournisseur', credentialsId: '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', url: 'https://github.com/mootez-brayek/DevOps'
+        }
+    }
+}
+}
