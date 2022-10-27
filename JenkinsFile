@@ -10,5 +10,11 @@ pipeline{
                 git branch: 'service/fournisseur', credentialsId: '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', url: 'https://github.com/mootez-brayek/DevOps'
         }
     }
+              stage('cleaning java Project'){
+                 steps{
+                     sh 'mvn clean compile'
+
+                 }
+             }
 }
 }
