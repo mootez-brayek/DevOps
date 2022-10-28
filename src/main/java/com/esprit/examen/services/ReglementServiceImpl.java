@@ -17,7 +17,7 @@ public class ReglementServiceImpl implements IReglementService {
 	private final ReglementRepository reglementRepository;
 	@Override
 	public List<Reglement> retrieveAllReglements() {
-		return reglementRepository.findAll();
+		return (List<Reglement>)reglementRepository.findAll();
 	}
 
 	@Override

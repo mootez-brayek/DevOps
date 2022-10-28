@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.esprit.examen.dto.ReglementDto;
+import com.esprit.examen.entities.Reglement;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;

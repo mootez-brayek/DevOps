@@ -3,6 +3,7 @@ package com.esprit.examen.services;
 import java.util.Date;
 import java.util.List;
 import com.esprit.examen.dto.ReglementDto;
+import com.esprit.examen.entities.Reglement;
 
 public interface IReglementService {
 
