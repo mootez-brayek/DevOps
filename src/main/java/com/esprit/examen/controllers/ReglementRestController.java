@@ -28,7 +28,7 @@ public class ReglementRestController {
     }
     @GetMapping("/retrieve-all-reglements")
     @ResponseBody
-    public List<ReglementDto> getReglement() {
+    public List<Reglement> getReglement() {
         return reglementService.retrieveAllReglements();
     }
 
