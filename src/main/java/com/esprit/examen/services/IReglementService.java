@@ -6,7 +6,7 @@ import com.esprit.examen.dto.ReglementDto;
 
 public interface IReglementService {
 
-	List<ReglementDto> retrieveAllReglements();
+	List<Reglement> retrieveAllReglements();
 	ReglementDto addReglement(ReglementDto r);
 	ReglementDto retrieveReglement(Long id);
 	ReglementDto updateReglement(ReglementDto r );
