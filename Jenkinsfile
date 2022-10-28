@@ -64,7 +64,7 @@ pipeline  {
                 }
             } 
         }
-
+        
         stage('Deploy docker images') { 
             steps { 
                 script { 
@@ -75,11 +75,16 @@ pipeline  {
                 } 
             }
         }
-
+       
         stage('Cleaning up') { 
             steps { 
                sh "docker rmi $registry:$BUILD_NUMBER $registry:latest"
             }
         } 
+     }
+     post {
+         always {
+            emailext attachLog: true,recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider']],subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: \n Check console output at $BUILD_URL to view the results.'
+        }
      }
  }
