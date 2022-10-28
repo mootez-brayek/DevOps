@@ -16,8 +16,8 @@ import com.esprit.examen.repositories.ReglementRepository;
 public class ReglementServiceImpl implements IReglementService {
 	private final ReglementRepository reglementRepository;
 	@Override
-	public List<ReglementDto> retrieveAllReglements() {
-		return ReglementDto.toListOfDto((List<Reglement>)reglementRepository.findAll());
+	public List<Reglement> retrieveAllReglements() {
+		return reglementRepository.findAll();
 	}
 
 	@Override
