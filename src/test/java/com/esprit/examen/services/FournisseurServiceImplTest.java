@@ -32,13 +32,11 @@ public class FournisseurServiceImplTest {
             int size=fournisseurs.size();
         Fournisseur f = new Fournisseur("fournisseur1","fournir", CategorieFournisseur.ORDINAIRE);
         Fournisseur savedFournisseur= fournisseurSer.addFournisseur(f);
-
         assertEquals(size+1, fournisseurSer.retrieveAllFournisseurs().size());
         assertNotNull(savedFournisseur.getLibelle());
         log.info("fournisseur has been added");
         fournisseurSer.deleteFournisseur(savedFournisseur.getIdFournisseur());
     }
-
     @Test
     public void testGetFournisseurs() {
         Fournisseur f= new Fournisseur("fournisseur2","abcd", CategorieFournisseur.CONVENTIONNE);
