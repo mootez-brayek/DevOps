@@ -18,8 +18,12 @@ import io.swagger.annotations.Api;
 @CrossOrigin("*")
 public class StockRestController {
 
-	@Autowired
+
 	IStockService stockService;
+
+	public StockRestController(IStockService stockService){
+		this.stockService=stockService ;
+	}
 
 	// http://localhost:8089/SpringMVC/stock/retrieve-all-stocks
 	@GetMapping("/retrieve-all-stocks")
@@ -52,10 +56,11 @@ public class StockRestController {
 	}
 
 	// http://localhost:8089/SpringMVC/stock/modify-stock
-	@PutMapping("/modify-stock")
+	@PutMapping("/modify-stock/{id}")
 	@ResponseBody
-	public Stock modifyStock(@RequestBody Stock stock) {
-		return stockService.updateStock(stock);
+	public Stock modifyStock(@PathVariable Long id  ,  @RequestBody Stock stock) {
+
+		return stockService.updateStock(id , stock);
 	}
 
 	/*

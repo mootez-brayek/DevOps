@@ -1,8 +1,11 @@
 package com.esprit.examen.services;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.esprit.examen.entities.Stock;
@@ -13,19 +16,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StockServiceImpl implements IStockService {
 
-	@Autowired
 	StockRepository stockRepository;
+
+	public StockServiceImpl(StockRepository stockRepository){
+		this.stockRepository=stockRepository;
+	}
 
 
 	@Override
 	public List<Stock> retrieveAllStocks() {
 		// récuperer la date à l'instant t1
-		log.info("In method retrieveAllStocks");
+		log.info("Begin Processing - Retreive all Stock Method ! ");
 		List<Stock> stocks = (List<Stock>) stockRepository.findAll();
-		for (Stock stock : stocks) {
-			log.info(" Stock : " + stock);
-		}
-		log.info("out of method retrieveAllStocks");
+		stocks.forEach(stock -> {log.info("Stock : " +stock);} );
+		log.info("End Processing - Retreive all Stock Method ! \"");
 		// récuperer la date à l'instant t2
 		// temps execution = t2 - t1
 		return stocks;
@@ -34,30 +38,32 @@ public class StockServiceImpl implements IStockService {
 	@Override
 	public Stock addStock(Stock s) {
 		// récuperer la date à l'instant t1
-		log.info("In method addStock");
+		log.info("Begin Processing addStock");
 		return stockRepository.save(s);
 		
 	}
 
 	@Override
 	public void deleteStock(Long stockId) {
-		log.info("In method deleteStock");
+		log.info("Begin Processing deleteStock");
 		stockRepository.deleteById(stockId);
+		log.info("End Processing deleteStock");
 
 	}
 
 	@Override
-	public Stock updateStock(Stock s) {
-		log.info("In method updateStock");
+	public Stock updateStock(Long id ,  Stock s) {
+		log.info("Begin Processing updateStock");
+		s.setIdStock(id);
 		return stockRepository.save(s);
 	}
 
 	@Override
 	public Stock retrieveStock(Long stockId) {
 		long start = System.currentTimeMillis();
-		log.info("In method retrieveStock");
+		log.info("Begin Processing -  retrieveStock");
 		Stock stock = stockRepository.findById(stockId).orElse(null);
-		log.info("out of method retrieveStock");
+		log.info("End  processing  _ retrieveStock");
 		 long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
 
@@ -66,8 +72,9 @@ public class StockServiceImpl implements IStockService {
 
 	@Override
 	public String retrieveStatusStock() {
+		log.info("Begin Processing - retrieveStatusStock () ");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		Date now = new Date();
+		Date now =  new Date();
 		String msgDate = sdf.format(now);
 		String finalMessage = "";
 		String newLine = System.getProperty("line.separator");
@@ -80,6 +87,7 @@ public class StockServiceImpl implements IStockService {
 
 		}
 		log.info(finalMessage);
+		log.info("End Processing - retrieveStatusStock ()");
 		return finalMessage;
 	}
 
