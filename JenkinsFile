@@ -1,20 +1,52 @@
 pipeline{
     agent any
-         tools{
-              maven 'M2_HOME'
-              jdk 'JAVA_HOME'
-         }
-         stages{
-                stage('checkout git'){
-                steps{
-                git branch: 'service/fournisseur', credentialsId: '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', url: 'https://github.com/mootez-brayek/DevOps'
+      tools{
+          maven 'M2_HOME'
+          jdk 'JAVA_HOME'
+     }
+    stages{
+        stage('checkout git'){
+            steps{
+               git branch: 'service/fournisseur', credentialsId: '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', url: 'https://github.com/mootez-brayek/DevOps'
+            }
         }
-    }
-              stage('cleaning java Project'){
-                 steps{
-                     sh 'mvn clean compile'
+        stage('GIT'){
+            steps{
+                echo "Getting project from Git";
+                git branch: 'service/fournisseur' , url: 'https://github.com/mootez-brayek/DevOps'
+            }
+        }
 
-                 }
-             }
-}
+         stage('MVN CLEAN COMPILE'){
+            steps{
+                sh 'mvn clean compile'
+            }
+        }
+         stage('testing maven'){
+            steps{
+                sh 'mvn -version'
+            }
+        }
+        stage('deploy jar to nexus'){
+              steps{
+                  sh 'mvn deploy:deploy-file -DgroupId=com.esprit.examen \
+                        -DartifactId=tpAchatProject \
+                        -Dversion=$VERSION \
+                        -Dpackaging=jar \
+                        -Dfile=./target/tpAchatProject$VERSION.jar \
+                        -DrepositoryId=esprit-devops \
+                        -Durl=http://172.10.0.140:8081/repository/maven-releases//'
+              }
+          }
+         /*stage('MVN SONARQUBE'){
+            steps{
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=mootezbrayek98'
+            }
+        }
+         stage('build artifact'){
+              steps{
+                  sh 'mvn package'
+              }
+          }*/
+    }
 }
