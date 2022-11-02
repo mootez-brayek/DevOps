@@ -77,7 +77,7 @@
 		<repository>
 			<id>deploymentRepo</id>
 			<name>Nexus Repository</name>
-			<url>http://172.10.0.140:8081/repository/maven-releases/</url>
+			<url>https://172.10.0.140:8081/repository/maven-releases/</url>
 		</repository>
 	</distributionManagement>
 
@@ -99,7 +99,6 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
 			</plugin>
-
 
 
 		</plugins>
