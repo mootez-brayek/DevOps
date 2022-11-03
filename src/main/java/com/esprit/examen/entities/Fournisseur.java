@@ -21,7 +21,7 @@ public class Fournisseur implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idFournisseur;
+	private long idFournisseur;
 	private String code;
 	private String libelle;
 	@Enumerated(EnumType.STRING)
@@ -35,6 +35,13 @@ public class Fournisseur implements Serializable {
     @OneToOne(cascade= CascadeType.ALL,fetch=FetchType.EAGER)
     private DetailFournisseur detailFournisseur;
 
+	public Fournisseur(long idFournisseur, String code, String libelle, CategorieFournisseur categorieFournisseur) {
+		super();
+		this.idFournisseur=idFournisseur;
+		this.code = code;
+		this.libelle = libelle;
+		this.categorieFournisseur = categorieFournisseur;
+	}
 	public Fournisseur(String code, String libelle, CategorieFournisseur categorieFournisseur) {
 		super();
 		this.code = code;
