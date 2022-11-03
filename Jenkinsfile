@@ -108,8 +108,8 @@ pipeline  {
             steps{
                 script{
                     withCredentials([string(credentialsId: 'github_id', variable: 'github_id')]){
-                        sh 'git config --global user.email "jenkins@jenkins.com"'
-                        sh 'git config --global user.name "jenkins"'
+                        sh 'git config --global user.email "jenkins-se-ci@example.com"'
+                        sh 'git config --global user.name "jenkins-se"'
                         sh "git remote set-url origin https://${github_id}@github.com/mootez-brayek/DevOps.git"
                         sh 'git add .'
                         sh 'git commit -m "ci: version update"'
