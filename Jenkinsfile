@@ -17,6 +17,7 @@ pipeline  {
                  echo 'Pulling...';
                  git branch: 'service/reglement' ,
                  url : 'https://github.com/mootez-brayek/DevOps.git'
+                 scmSkip(deleteBuild: true, skipPattern:'.*\\[ci: version update\\].*')
                  
          }
           }
@@ -112,7 +113,7 @@ pipeline  {
                         sh 'git config --global user.name "jenkins-se"'
                         sh "git remote set-url origin https://${github_id}@github.com/mootez-brayek/DevOps.git"
                         sh 'git add .'
-                        sh 'git commit -m "ci: version update"'
+                        sh 'git commit -m "[ci: version update]"'
                         sh 'git push origin HEAD:service/reglement'
                     }
                 }
