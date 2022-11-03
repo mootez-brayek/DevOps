@@ -10,15 +10,16 @@ pipeline  {
              registryCredential = 'dockerhub_id'
              dockerImage = ''
          }
-     stages{
          
+     stages{
           stage('Chekout GIT'){
             steps{
                  echo 'Pulling...';
                  git branch: 'service/reglement' ,
                  url : 'https://github.com/mootez-brayek/DevOps.git'
-             }
+                 
          }
+          }
          stage('Increment Version'){
              steps{
                  script{
@@ -118,6 +119,7 @@ pipeline  {
             }
         }
      }
+     
      post {
          always {
             emailext attachLog: true,recipientProviders: [[$class: 'DevelopersRecipientProvider'],[$class: 'RequesterRecipientProvider']],subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: \n Check console output at $BUILD_URL to view the results.'
