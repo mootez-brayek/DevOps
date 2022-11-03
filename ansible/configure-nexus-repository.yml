@@ -1,0 +1,9 @@
+---
+tasks:
+  - name: Change username on xml file
+    xml:
+      path: "/opt/ansible/context.xml"
+      xpath: //Resource
+      attribute: username
+      value: "tamim"
+      state: present
