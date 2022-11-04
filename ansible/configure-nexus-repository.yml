@@ -4,17 +4,17 @@
     become : yes
     tasks:
       - name: update id of the server element
-        community.general.xml:
+        xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/id
           value: esprit-devops
       - name: update username of the server element
-        community.general.xml:
+        xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/username
           value: auckfmine
       - name: update password of the server element
-        community.general.xml:
+        xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/password
           value: aminelol123
