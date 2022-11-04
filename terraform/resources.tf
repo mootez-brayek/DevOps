@@ -19,6 +19,10 @@ resource "docker_container" "prometheus-container" {
     internal = 9090
     external = 9090
   }
+  volumes {
+    volume_name = "prometheus-data"
+    container_path = "/prometheus"
+  }
 }
 #grafana container
 resource "docker_container" "grafana-container" {
