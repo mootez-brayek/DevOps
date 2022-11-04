@@ -7,8 +7,8 @@
       - name: Add new elements
         xml:
           namespaces:
-            xmlns: http://maven.apache.org/SETTINGS/1.0.0
+            m: "http://maven.apache.org/SETTINGS/1.0.0"
           path: /opt/maven/conf/settings.xml
-          xpath: /xmlns:settings/xmlns:servers
+          xpath: /m:settings/m:servers
           attribute: server
           value: hi
