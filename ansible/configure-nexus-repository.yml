@@ -4,30 +4,30 @@
     connection: local
     become : yes
     tasks:
-      - name: add a server element
+      - name: Add new elements
         xml:
-          path: /opt/maven/conf/settings.xml
-          xpath: /settings/servers/server
+          path: settings.xml
+          xpath: /m:settings/m:servers/m:server
           namespaces:
-            x: http://maven.apache.org/SETTINGS/1.2.0
-      - name: update id of the server element
+            m: http://maven.apache.org/SETTINGS/1.0.0
+      - name: update id
         xml:
-          path: /opt/maven/conf/settings.xml
-          xpath: /settings/servers/server/id
-          namespaces:
-            x: http://maven.apache.org/SETTINGS/1.2.0
+          path: settings.xml
+          xpath: /m:settings/m:servers/m:server/m:id
           value: esprit-devops
-      - name: update username of the server element
-        xml:
-          path: /opt/maven/conf/settings.xml
-          xpath: /settings/servers/server/username
           namespaces:
-            x: http://maven.apache.org/SETTINGS/1.2.0
-          value: auckfmine
-      - name: update password of the server element
+            m: http://maven.apache.org/SETTINGS/1.0.0
+      - name: update username
         xml:
-          path: /opt/maven/conf/settings.xml
-          xpath: /settings/servers/server/password
+          path: settings.xml
+          xpath: /m:settings/m:servers/m:server/m:username
+          value: admin
           namespaces:
-            x: http://maven.apache.org/SETTINGS/1.2.0
+            m: http://maven.apache.org/SETTINGS/1.0.0
+      - name: update password
+        xml:
+          path: settings.xml
+          xpath: /m:settings/m:servers/m:server/m:password
           value: aminelol123
+          namespaces:
+            m: http://maven.apache.org/SETTINGS/1.0.0
