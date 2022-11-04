@@ -1,9 +1,13 @@
 ---
 tasks:
-  - name: Change username on xml file
+  - name: configure maven to push to private nexus repository
     xml:
-      path: "/opt/ansible/context.xml"
-      xpath: //Resource
-      attribute: username
-      value: "tamim"
-      state: present
+      become: true
+      path: /opt/maven/conf/settings.xml
+      xpath: /settings/servers
+      value: server
+      add_children:
+        - id: deploymentRepo
+        - username: admin
+        - password: aminelol123
+
