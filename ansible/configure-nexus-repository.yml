@@ -7,18 +7,26 @@
         xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server
+          namespaces:
+            x: http://maven.apache.org/SETTINGS/1.2.0
       - name: update id of the server element
         xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/id
+          namespaces:
+            x: http://maven.apache.org/SETTINGS/1.2.0
           value: esprit-devops
       - name: update username of the server element
         xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/username
+          namespaces:
+            x: http://maven.apache.org/SETTINGS/1.2.0
           value: auckfmine
       - name: update password of the server element
         xml:
           path: /opt/maven/conf/settings.xml
           xpath: /settings/servers/server/password
+          namespaces:
+            x: http://maven.apache.org/SETTINGS/1.2.0
           value: aminelol123
