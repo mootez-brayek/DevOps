@@ -6,27 +6,27 @@
     tasks:
       - name: Add new elements
         xml:
-          path: settings.xml
+          path: /opt/maven/conf/settings.xml
           xpath: /m:settings/m:servers/m:server
           namespaces:
             m: http://maven.apache.org/SETTINGS/1.0.0
       - name: update id
         xml:
-          path: settings.xml
+          path: /opt/maven/conf/settings.xml
           xpath: /m:settings/m:servers/m:server/m:id
           value: esprit-devops
           namespaces:
             m: http://maven.apache.org/SETTINGS/1.0.0
       - name: update username
         xml:
-          path: settings.xml
+          path: /opt/maven/conf/settings.xml
           xpath: /m:settings/m:servers/m:server/m:username
           value: admin
           namespaces:
             m: http://maven.apache.org/SETTINGS/1.0.0
       - name: update password
         xml:
-          path: settings.xml
+          path: /opt/maven/conf/settings.xml
           xpath: /m:settings/m:servers/m:server/m:password
           value: aminelol123
           namespaces:
