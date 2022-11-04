@@ -3,13 +3,18 @@
     hosts: localhost
     become : yes
     tasks:
-      - name: configure maven to push to private nexus repository
-        xml:
+      - name: update id of the server element
+        community.general.xml:
           path: /opt/maven/conf/settings.xml
-          xpath: /settings/servers
-          value: server
-          add_children:
-            - id: deploymentRepo
-            - username: admin
-            - password: aminelol123
-
+          xpath: /settings/servers/server/id
+          value: esprit-devops
+      - name: update username of the server element
+        community.general.xml:
+          path: /opt/maven/conf/settings.xml
+          xpath: /settings/servers/server/username
+          value: auckfmine
+      - name: update password of the server element
+        community.general.xml:
+          path: /opt/maven/conf/settings.xml
+          xpath: /settings/servers/server/password
+          value: aminelol123
