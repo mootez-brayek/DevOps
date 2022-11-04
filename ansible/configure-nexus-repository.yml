@@ -3,6 +3,10 @@
     hosts: localhost
     become : yes
     tasks:
+      - name: add a server element
+        xml:
+          path: /opt/maven/conf/settings.xml
+          xpath: /settings/servers/server
       - name: update id of the server element
         xml:
           path: /opt/maven/conf/settings.xml
