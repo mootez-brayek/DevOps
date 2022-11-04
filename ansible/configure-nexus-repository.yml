@@ -1,13 +1,15 @@
 ---
-  tasks:
-    - name: configure maven to push to private nexus repository
-      xml:
-        become: true
-        path: /opt/maven/conf/settings.xml
-        xpath: /settings/servers
-        value: server
-        add_children:
-          - id: deploymentRepo
-          - username: admin
-          - password: aminelol123
+  - name: playbook
+    hosts: localhost
+    become : yes
+    tasks:
+      - name: configure maven to push to private nexus repository
+        xml:
+          path: /opt/maven/conf/settings.xml
+          xpath: /settings/servers
+          value: server
+          add_children:
+            - id: deploymentRepo
+            - username: admin
+            - password: aminelol123
 
