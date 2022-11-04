@@ -6,9 +6,9 @@
     tasks:
       - name: Add new elements
         xml:
-          namespaces:
-            m: "http://maven.apache.org/SETTINGS/1.0.0"
+
           path: /opt/maven/conf/settings.xml
-          xpath: /m:settings/m:servers
-          attribute: server
-          value: hi
+          xpath: /m:settings/m:mirrors/m:mirror/m:id
+          value: 1
+          namespaces:
+            m: http://maven.apache.org/SETTINGS/1.0.0
