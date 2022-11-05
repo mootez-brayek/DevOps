@@ -7,7 +7,7 @@
       - name: Add new elements
         xml:
           path: /opt/maven/conf/settings.xml
-          xpath: /settings/mirrors/mirror/id
+          xpath: /m:settings/m:mirrors/m:mirror/m:id
           value: 1
           namespaces:
             m: http://maven.apache.org/SETTINGS/1.0.0

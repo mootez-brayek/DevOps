@@ -1,6 +1,3 @@
-
-
-
 #prometheus image
 resource "docker_image" "prometheus" {
   name = "prom/prometheus"

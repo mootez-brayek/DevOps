@@ -45,7 +45,6 @@ resource "docker_container" "sonarqube-container" {
   volumes {
     container_path = "/opt/sonarqube/data"
     volume_name = "sonar-data"
-
   }
   volumes {
     container_path = "/opt/sonarqube/extensions"
