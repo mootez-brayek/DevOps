@@ -27,7 +27,7 @@ public class ProduitServiceImplTest {
     @MockBean
     private ProduitRepository PR;
 
-    Produit p=new Produit(1L,"Ref N: 25A45ZDD6FF8","iPhone 14",5000,new Date(),new Date(),null,null,null);
+    Produit p = new Produit(1L,"Ref N: 25A45ZDD6FF8","iPhone 14",5000,new Date(),new Date(),null,null,null);
 
     @Test
     public void retrieveAllProduits() {
@@ -73,7 +73,5 @@ public class ProduitServiceImplTest {
         System.out.println("Retrieve P TEST :P !");
     }
 
-    @Test
-    public  void assignProduitToStock() {
-    }
+
 }
