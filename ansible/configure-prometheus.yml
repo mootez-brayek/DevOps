@@ -2,7 +2,6 @@
 - name: prometheus configuration
   hosts: localhost
   connection: local
-  become : yes
   tasks:
     - name: add jenkins monitoring to prometheus.yml
       shell:
