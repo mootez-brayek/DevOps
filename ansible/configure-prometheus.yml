@@ -5,7 +5,7 @@
   tasks:
     - name: add jenkins monitoring to prometheus.yml
       shell:
-        "docker exec -u 0 prometheus-container bash -c  'tee  -a /etc/prometheus/prometheus.yml <<EOF
+        "docker exec -u 0 prometheus-container sh -c  'tee  -a /etc/prometheus/prometheus.yml <<EOF
 
     - job_name: jenkins
 
