@@ -1,0 +1,19 @@
+---
+- name: prometheus configuration
+  hosts: localhost
+  connection: local
+  become : yes
+  tasks:
+    - name: add jenkins monitoring to prometheus.yml
+      shell:
+        "docker exec -u 0 prometheus-container echo tee -a /etc/prometheus/prometheus.yml <<EOF
+
+                                                      - job_name: jenkins
+
+                                                        metrics_path: /prometheus
+
+                                                        static_configs:
+
+                                                          - targets: ['172.10.0.140:8080']
+
+                                                    EOF "
