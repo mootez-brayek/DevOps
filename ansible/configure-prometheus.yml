@@ -5,14 +5,13 @@
   tasks:
     - name: add jenkins monitoring to prometheus.yml
       shell:
-        "docker exec -u 0 prometheus-container tee -a /etc/prometheus/prometheus.yml <<EOF
+        "docker exec -u 0 prometheus-container bash -c  'tee  -a /etc/prometheus/prometheus.yml <<EOF
 
-                                                      - job_name: jenkins
+    - job_name: jenkins
 
-                                                        metrics_path: /prometheus
+      metrics_path: /prometheus
 
-                                                        static_configs:
+      static_configs:
+        - targets: ['172.10.0.140:8080']
 
-                                                          - targets: ['172.10.0.140:8080']
-
-                                                    EOF "
+EOF' "
