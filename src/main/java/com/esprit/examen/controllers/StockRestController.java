@@ -50,8 +50,8 @@ public class StockRestController {
 
 	@DeleteMapping("/remove-stock/{stock-id}")
 	@ResponseBody
-	public void removeStock(@PathVariable("stock-id") Long stockId) {
-		stockService.deleteStock(stockId);
+	public void removeStock(@RequestBody StockDto r) {
+		stockService.deleteStock(r);
 	}
 
 	// http://localhost:8089/SpringMVC/stock/modify-stock
