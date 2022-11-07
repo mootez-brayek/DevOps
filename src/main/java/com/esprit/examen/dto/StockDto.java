@@ -1,10 +1,9 @@
 package com.esprit.examen.dto;
 
-import com.esprit.examen.Exceptions.CatchException;
+import com.esprit.examen.exception.CatchException;
 import com.esprit.examen.entities.Stock;
 import lombok.Builder;
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 

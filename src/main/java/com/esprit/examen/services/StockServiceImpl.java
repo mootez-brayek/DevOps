@@ -1,14 +1,10 @@
 package com.esprit.examen.services;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
-import com.esprit.examen.Exceptions.CatchException;
 import com.esprit.examen.dto.StockDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.esprit.examen.entities.Stock;
 import com.esprit.examen.repositories.StockRepository;
@@ -82,13 +78,13 @@ public class StockServiceImpl implements IStockService {
 	@Override
 	public String retrieveStatusStock() {
 		log.info("Begin Processing - retrieveStatusStock () ");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		Date now =  new Date();
+		var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		var now =  new Date();
 		String msgDate = sdf.format(now);
-		StringBuilder finalMessage =  new StringBuilder();
+		var finalMessage =  new StringBuilder();
 		String newLine = System.getProperty("line.separator");
 		List<Stock> stocksEnRouge =  stockRepository.retrieveStatusStock();
-		for (int i = 0; i < stocksEnRouge.size(); i++) {
+		for (var i = 0; i < stocksEnRouge.size(); i++) {
 			finalMessage.append(newLine + finalMessage + msgDate + newLine + ": le stock "
 					+ stocksEnRouge.get(i).getLibelleStock() + " a une quantité de " + stocksEnRouge.get(i).getQte()
 					+ " inférieur à la quantité minimale a ne pas dépasser de " + stocksEnRouge.get(i).getQteMin()
@@ -99,5 +95,7 @@ public class StockServiceImpl implements IStockService {
 		log.info("End Processing - retrieveStatusStock ()");
 		return finalMessage.toString();
 	}
+
+
 
 }
