@@ -71,7 +71,7 @@ public class StockServiceImpl implements IStockService {
 				.orElse(null);
 		log.info("out of method retrieveReglement ReglementServic");
 		long elapsedTime = System.currentTimeMillis() - start;
-		log.info("Method execution time: " + elapsedTime + " milliseconds.");
+		log.info("Methode execution time: " + elapsedTime + " milliseconds.");
 		return result;
 	}
 
