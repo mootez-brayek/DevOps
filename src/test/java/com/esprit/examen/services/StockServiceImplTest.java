@@ -41,13 +41,12 @@ public class StockServiceImplTest {
 		//stockService.deleteStock(savedStock.getIdStock());
 	}
 
-
+/*
 	@Test
 	public void testretRieveStock(){
 
 		StockDto stockDto = StockDto
 				.builder()
-				.idStock(14l)
 				.libelleStock("valid")
 				.qte(20)
 				.qteMin(10)
@@ -56,7 +55,7 @@ public class StockServiceImplTest {
 		assertEquals(savedStock,stockService.retrieveStock(savedStock.getIdStock()));
 		//stockService.deleteStock(savedStock.getIdStock());
 	}
-
+*/
 	@Test
 	public void testUpdateStock(){
 		StockDto stockDto = StockDto
