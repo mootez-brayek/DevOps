@@ -2,7 +2,6 @@ package com.esprit.examen.services;
 
 import com.esprit.examen.entities.DetailFournisseur;
 import com.esprit.examen.entities.Fournisseur;
-import com.esprit.examen.entities.SecteurActivite;
 import com.esprit.examen.repositories.DetailFournisseurRepository;
 import com.esprit.examen.repositories.FournisseurRepository;
 import com.esprit.examen.repositories.ProduitRepository;
@@ -29,27 +28,26 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
-		List<Fournisseur> fournisseurs = null;
 		return fournisseurRepository.findAll();
 	}
 
 	public Fournisseur addFournisseur(Fournisseur f /*Master*/) {
-		DetailFournisseur df= new DetailFournisseur();//Slave
-		df.setDateDebutCollaboration(new Date()); //util
-		f.setDetailFournisseur(df);
+		DetailFournisseur detailFournisseurf= new DetailFournisseur();//Slave
+		detailFournisseurf.setDateDebutCollaboration(new Date()); //util
+		f.setDetailFournisseur(detailFournisseurf);
 		fournisseurRepository.save(f);
 		return f;
 	}
 
 	private DetailFournisseur  saveDetailFournisseur(Fournisseur f){
-		DetailFournisseur df = f.getDetailFournisseur();
-		detailFournisseurRepository.save(df);
-		return df;
+		var detailFournisseurf = f.getDetailFournisseur();
+		detailFournisseurRepository.save(detailFournisseurf);
+		return detailFournisseurf;
 	}
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
-		DetailFournisseur df = saveDetailFournisseur(f);
-		f.setDetailFournisseur(df);
+		var detailFournisseurf = saveDetailFournisseur(f);
+		f.setDetailFournisseur(detailFournisseurf);
 		fournisseurRepository.save(f);
 		return f;
 	}
@@ -69,7 +67,7 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
+		var secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
 		fournisseur.getSecteurActivites().add(secteurActivite);
 		fournisseurRepository.save(fournisseur);
 
