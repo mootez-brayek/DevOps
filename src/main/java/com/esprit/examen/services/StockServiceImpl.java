@@ -48,12 +48,13 @@ public class StockServiceImpl implements IStockService {
 	}
 
 	@Override
-	public void deleteStock(Long stockId) {
-		log.info("Begin Processing deleteStock");
-		if(stockId==null) throw new CatchException(" id is null ");
-		stockRepository.deleteById(stockId);
-		log.info("End Processing deleteStock");
-
+	public void deleteStock(StockDto r) {
+		long start = System.currentTimeMillis();
+		log.info("In method deleteStock ");
+		stockRepository.delete(StockDto.toEntity(r));
+		log.info("out of method deleteStock ");
+		long elapsedTime = System.currentTimeMillis() - start;
+		log.info("Method execution time: " + elapsedTime + " milliseconds.");
 	}
 
 	@Override
@@ -65,16 +66,17 @@ public class StockServiceImpl implements IStockService {
 		return s ;
 	}
 
-	@Override
-	public StockDto retrieveStock(Long stockId) {
+	public StockDto retrieveStock(Long id) {
 		long start = System.currentTimeMillis();
-		log.info("Begin Processing -  retrieveStock");
-		Stock stock = stockRepository.findById(stockId).orElse(null);
-		log.info("End  processing  _ retrieveStock");
+		log.info("In method retrieveReglement of ReglementServic");
+		StockDto result =  stockRepository
+				.findById(id)
+				.map(StockDto::fromEntity)
+				.orElse(null);
+		log.info("out of method retrieveReglement ReglementServic");
 		long elapsedTime = System.currentTimeMillis() - start;
 		log.info("Method execution time: " + elapsedTime + " milliseconds.");
-
-		return StockDto.fromEntity(stock);
+		return result;
 	}
 
 	@Override
