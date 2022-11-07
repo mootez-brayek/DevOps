@@ -40,7 +40,7 @@ resource "docker_container" "sonarqube-container" {
   name  = "sonarqube-container"
   ports {
     internal = 9000
-    external = 9001
+    external = 9000
   }
   volumes {
     container_path = "/opt/sonarqube/data"
