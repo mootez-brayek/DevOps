@@ -6,10 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
 import com.esprit.examen.entities.Reglement;
 import com.esprit.examen.services.IReglementService;
-
 import io.swagger.annotations.Api;
 
 @RestController

@@ -9,7 +9,6 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-
 @Api(tags = "Gestion des produits")
 @RequestMapping("/produit")
 public class ProduitRestController {
