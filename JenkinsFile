@@ -1,0 +1,49 @@
+pipeline{
+    agent any
+
+      tools{
+          maven 'M2_HOME'
+          jdk 'JAVA_HOME'
+     }
+      stages{
+        stage('Checkout GIT'){
+            steps{
+               git branch: 'service/Produits', credentialsId: 'nexus-user-credentials', url: 'https://github.com/mootez-brayek/DevOps'
+            }
+        }
+        stage('GIT'){
+            steps{
+                echo "Getting project from Git";
+                git branch: 'service/Produits' , url: 'https://github.com/mootez-brayek/DevOps'
+            }
+        }
+
+         stage('Cleaning Java Project'){
+            steps{
+                sh 'mvn clean compile'
+            }
+        }
+         stage('Testing Maven'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+          stage('Maven Package'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+       stage('Deploy Jar to nexus'){
+                steps{
+
+                  sh 'mvn deploy'
+                }
+          }
+         stage('SonarQube Analysis'){
+            steps{
+                sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=esprit'
+            }
+        }
+
+    }
+}
