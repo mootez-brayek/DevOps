@@ -25,11 +25,10 @@ public class FournisseurServiceImplTest {
     @Autowired
     DetailFournisseurRepository detailFournisseurRepository;
 
-
     @Test
     public void testAddFournisseur(){
         List<Fournisseur> fournisseurs = fournisseurSer.retrieveAllFournisseurs();
-            int size=fournisseurs.size();
+            int size =fournisseurs.size();
         Fournisseur f = new Fournisseur("fournisseur1","fournir", CategorieFournisseur.ORDINAIRE);
         Fournisseur savedFournisseur= fournisseurSer.addFournisseur(f);
         assertEquals(size+1, fournisseurSer.retrieveAllFournisseurs().size());
@@ -39,11 +38,17 @@ public class FournisseurServiceImplTest {
     }
     @Test
     public void testGetFournisseurs() {
-        Fournisseur f= new Fournisseur("fournisseur2","abcd", CategorieFournisseur.CONVENTIONNE);
+        List<Fournisseur> fournisseurs = fournisseurSer.retrieveAllFournisseurs();
+        int size =fournisseurs.size();
+        Fournisseur f = new Fournisseur("fournisseur1","fournir", CategorieFournisseur.ORDINAIRE);
+        Fournisseur o = new Fournisseur("fournisseur2","fournir2", CategorieFournisseur.CONVENTIONNE);
         Fournisseur savedFournisseur= fournisseurSer.addFournisseur(f);
-        List<Fournisseur> fournisseursList = fournisseurSer.retrieveAllFournisseurs();
-        assertNotEquals(fournisseursList.size(),0);
+        Fournisseur savedFournisseur2= fournisseurSer.addFournisseur(o);
+        assertEquals(size+2, fournisseurSer.retrieveAllFournisseurs().size());
+        assertNotNull(savedFournisseur.getLibelle());
+        log.info("fournisseur has been added");
         fournisseurSer.deleteFournisseur(savedFournisseur.getIdFournisseur());
+        fournisseurSer.deleteFournisseur(savedFournisseur2.getIdFournisseur());
     }
 
 

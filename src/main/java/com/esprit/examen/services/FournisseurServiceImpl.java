@@ -29,56 +29,61 @@ public class FournisseurServiceImpl implements IFournisseurService {
 
 	@Override
 	public List<Fournisseur> retrieveAllFournisseurs() {
-		List<Fournisseur> fournisseurs =fournisseurRepository.findAll();
-		for (Fournisseur fournisseur : fournisseurs) {
-			log.info(" fournisseur : " + fournisseur);
-		}
+		List<Fournisseur> fournisseurs = null;
+		fournisseurs = fournisseurRepository.findAll();
 		return fournisseurs;
 	}
 
-
 	public Fournisseur addFournisseur(Fournisseur f /*Master*/) {
+
 		DetailFournisseur df= new DetailFournisseur();//Slave
 		df.setDateDebutCollaboration(new Date()); //util
-		//On affecte le "Slave" au "Master"
-		f.setDetailFournisseur(df);	
+		f.setDetailFournisseur(df);
 		fournisseurRepository.save(f);
+
+
 		return f;
 	}
-	
+
 	private DetailFournisseur  saveDetailFournisseur(Fournisseur f){
+
 		DetailFournisseur df = f.getDetailFournisseur();
 		detailFournisseurRepository.save(df);
+
 		return df;
 	}
 
 	public Fournisseur updateFournisseur(Fournisseur f) {
+
 		DetailFournisseur df = saveDetailFournisseur(f);
-		f.setDetailFournisseur(df);	
+		f.setDetailFournisseur(df);
 		fournisseurRepository.save(f);
 		return f;
 	}
 
 	@Override
 	public void deleteFournisseur(Long fournisseurId) {
+
 		fournisseurRepository.deleteById(fournisseurId);
 
 	}
 
 	@Override
-	public Fournisseur retrieveFournisseur(long fournisseurId) {
+	public Fournisseur retrieveFournisseur(Long fournisseurId) {
 		return fournisseurRepository.findById(fournisseurId).orElse(null);
 	}
 
 	@Override
-	public void assignSecteurActiviteToFournisseur(long idSecteurActivite, long idFournisseur) {
+
+	public void assignSecteurActiviteToFournisseur(Long idSecteurActivite, Long idFournisseur) {
+
+
+
 		Fournisseur fournisseur = fournisseurRepository.findById(idFournisseur).orElse(null);
-		if (fournisseur != null) {
-			SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
-			fournisseur.getSecteurActivites().add(secteurActivite);
-			fournisseurRepository.save(fournisseur);
-		}
-		
+		SecteurActivite secteurActivite = secteurActiviteRepository.findById(idSecteurActivite).orElse(null);
+		fournisseur.getSecteurActivites().add(secteurActivite);
+		fournisseurRepository.save(fournisseur);
+
 	}
 
 	
