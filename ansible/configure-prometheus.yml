@@ -1,25 +1,25 @@
 ---
-- name: prometheus configuration
+- name: Test shell
   hosts: localhost
-  connection: local
+  gather_facts: no
   tasks:
-    - name: add jenkins monitoring to prometheus.yml
-      community.docker.docker_container_exec:
-        container: prometheus-container
-        argv:
-          - /bin/bash
-          - "tee -a /etc/prometheus/prometheus.yml << EOF
+    - name: update prometheus.yml file
+      shell:
+        cmd: |
+          docker exec prometheus-container /bin/sh -c 'tee -a /etc/prometheus/prometheus.yml <<EOF
 
-                                  - job_name: jenkins
+            - job_name: jenkins
 
-                                    metrics_path: /prometheus
+              metrics_path: /prometheus
 
-                                    static_configs:
+              static_configs:
 
-                                      - targets: ['172.17.0.1:8080']
-              EOF"
-      register: result
+                - targets: ['172.10.0.140:8080']
 
-    - name: Print stderr lines
-      debug:
-        var: result.stderr_lines
+          EOF'
+      args:
+        executable: /bin/sh
+
+    - name: restart prometheus container
+      shell:
+        cmd: docker container restart prometheus-container
