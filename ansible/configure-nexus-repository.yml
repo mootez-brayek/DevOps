@@ -2,11 +2,25 @@
 - name: Test shell
   hosts: localhost
   gather_facts: no
-
   tasks:
-    - name: Set namespaced
+    - name: update server id
       community.general.xml:
-        path: foo.xml
-        xpath: /x:settings/servers/server/
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:id
+        value: esprit-devops
         namespaces:
-          x: http://maven.apache.org/SETTINGS/1.0.0
+          x: http://maven.apache.org/SETTINGS/1.2.0
+
+    - name: update username
+      community.general.xml:
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:username
+        value: admin
+        namespaces:
+          x: http://maven.apache.org/SETTINGS/1.2.0
+
+    - name: update password
+      community.general.xml:
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:password
+        value: aminelol123
