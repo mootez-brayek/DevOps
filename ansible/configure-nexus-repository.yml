@@ -1,5 +1,5 @@
 ---
-- name: Test shell
+- name: setup nexus repository
   hosts: localhost
   gather_facts: no
   tasks:
