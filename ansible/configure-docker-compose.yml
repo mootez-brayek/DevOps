@@ -3,8 +3,15 @@
   hosts: localhost
   gather_facts: no
   tasks:
-    - name: spin up docker compose at the first start 
-      shell:
-        cmd: docker-compose up -d
-      args:
-        executable: /bin/bash
+    - name: Tear down existing services
+      community.docker.docker_compose:
+        project_src: .
+        state: absent
+
+    - name: Create and start services
+      community.docker.docker_compose:
+        project_src: .
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
