@@ -4,10 +4,9 @@
     connection: local
     become : yes
     tasks:
-      - name: Add new elements
-        xml:
-          path: /opt/maven/conf/settings.xml
-          xpath: /m:settings/m:mirrors/m:mirror/m:id
-          value: 1
+      - name: Set namespaced
+        community.general.xml:
+          path: foo.xml
+          xpath: /x:settings/servers/server/
           namespaces:
-            m: http://maven.apache.org/SETTINGS/1.0.0
+            x: http://maven.apache.org/SETTINGS/1.0.0
