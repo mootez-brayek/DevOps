@@ -1,0 +1,10 @@
+---
+- name: run docker-compose
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: spin up docker compose at the first start 
+      shell:
+        cmd: docker-compose up -d
+      args:
+        executable: /bin/bash
