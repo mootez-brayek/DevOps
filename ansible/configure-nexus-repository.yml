@@ -2,6 +2,7 @@
 - name: setup nexus repository
   hosts: localhost
   gather_facts: no
+  become: yes
   tasks:
     - name: update server id
       community.general.xml:
