@@ -1,12 +1,12 @@
 ---
-  - name: playbook
-    hosts: localhost
-    connection: local
-    become : yes
-    tasks:
-      - name: Set namespaced
-        community.general.xml:
-          path: foo.xml
-          xpath: /x:settings/servers/server/
-          namespaces:
-            x: http://maven.apache.org/SETTINGS/1.0.0
+- name: Test shell
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Set namespaced
+      community.general.xml:
+        path: foo.xml
+        xpath: /x:settings/servers/server/
+        namespaces:
+          x: http://maven.apache.org/SETTINGS/1.0.0
