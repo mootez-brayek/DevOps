@@ -21,7 +21,6 @@ public class FournisseurRestController {
 	@GetMapping("/retrieve-all-fournisseurs")
 	@ResponseBody
 	public List<Fournisseur> getFournisseurs() {
-
 		return fournisseurService.retrieveAllFournisseurs();
 	}
 
@@ -36,7 +35,6 @@ public class FournisseurRestController {
 	@PostMapping("/add-fournisseur")
 	@ResponseBody
 	public Fournisseur addFournisseur(@RequestBody Fournisseur f) {
-
 		return fournisseurService.addFournisseur(f);
 	}
 

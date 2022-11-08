@@ -1,28 +1,19 @@
 package com.esprit.examen.dto;
 
-
 import com.esprit.examen.entities.DetailFournisseur;
 import com.esprit.examen.exceptions.FournisseurException;
 import lombok.Builder;
 import lombok.Data;
-
 import java.util.Date;
 
 @Builder
 @Data
 public class DetailFournisseurDto {
-
     private Long idDetailFournisseur;
-
     private String email;
-
     private Date dateDebutCollaboration;
-
     private String adresse;
-
     private String matricule;
-
-
     public static DetailFournisseurDto fromEntity(DetailFournisseur detailFournisseur){
         if(detailFournisseur == null) throw  new FournisseurException("Empty");
         return DetailFournisseurDto.builder()
@@ -33,8 +24,6 @@ public class DetailFournisseurDto {
                 .matricule(detailFournisseur.getMatricule())
                 .build();
     }
-
-
     public static DetailFournisseur toEntity(DetailFournisseurDto detailFournisseurDto){
         if(detailFournisseurDto == null) throw new FournisseurException(" is empty");
         return DetailFournisseur.builder()
@@ -45,5 +34,4 @@ public class DetailFournisseurDto {
                 .matricule(detailFournisseurDto.getMatricule())
                 .build();
     }
-
 }
