@@ -23,5 +23,5 @@
     - name: update password
       community.general.xml:
         path: /opt/maven/conf/settings.xml
-        xpath: /x:settings/x:servers/x:server/x:password
+        xpath: /x:settings/x:servers/x:server/password
         value: aminelol123
