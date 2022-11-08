@@ -3,19 +3,25 @@ package com.esprit.examen.controllers;
 import java.util.Date;
 import java.util.List;
 
+
 import com.esprit.examen.dto.ReglementDto;
 import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-import com.esprit.examen.services.IReglementService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import com.esprit.examen.entities.Reglement;
 
+import com.esprit.examen.services.IReglementService;
 import io.swagger.annotations.Api;
 
 @RestController
 @Api(tags = "Gestion des reglements")
 @RequestMapping("/reglement")
+
 @CrossOrigin("*")
 @AllArgsConstructor
+
 public class ReglementRestController {
     private final IReglementService reglementService;
 

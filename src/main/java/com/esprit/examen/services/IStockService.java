@@ -1,19 +1,20 @@
 package com.esprit.examen.services;
 
 import java.util.List;
-import com.esprit.examen.entities.Stock;
+
+import com.esprit.examen.dto.StockDto;
 
 public interface IStockService {
 
-	List<Stock> retrieveAllStocks();
+	List<StockDto> retrieveAllStocks();
 
-	Stock addStock(Stock s);
+	StockDto addStock(StockDto s);
 
-	void deleteStock(Long id);
+	void deleteStock(StockDto r);
 
-	Stock updateStock(Stock u);
+	StockDto updateStock(Long id , StockDto u);
 
-	Stock retrieveStock(Long id);
+	StockDto retrieveStock(Long id);
 
 	String retrieveStatusStock();
 }
