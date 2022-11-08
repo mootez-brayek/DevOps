@@ -1,0 +1,25 @@
+---
+- name: Test shell
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: update prometheus.yml file
+      shell:
+        cmd: |
+          docker exec prometheus-container /bin/sh -c 'tee -a /etc/prometheus/prometheus.yml <<EOF
+
+            - job_name: jenkins
+
+              metrics_path: /prometheus
+
+              static_configs:
+
+                - targets: ['172.10.0.140:8080']
+
+          EOF'
+      args:
+        executable: /bin/sh
+
+    - name: restart prometheus container
+      shell:
+        cmd: docker container restart prometheus-container

@@ -10,24 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Reglement implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idReglement;
-	private float montantPaye;
-	private float montantRestant;
+	private Float montantPaye;
+	private Float montantRestant;
 	private Boolean payee;
 	@Temporal(TemporalType.DATE)
 	private Date dateReglement;

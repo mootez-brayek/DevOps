@@ -3,10 +3,15 @@ package com.esprit.examen.controllers;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.esprit.examen.dto.ReglementDto;
+import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import com.esprit.examen.entities.Reglement;
+
 import com.esprit.examen.services.IReglementService;
 import io.swagger.annotations.Api;
 
@@ -14,38 +19,38 @@ import io.swagger.annotations.Api;
 @Api(tags = "Gestion des reglements")
 @RequestMapping("/reglement")
 
-public class ReglementRestController {
+@CrossOrigin("*")
+@AllArgsConstructor
 
-    @Autowired
-    IReglementService reglementService;
+public class ReglementRestController {
+    private final IReglementService reglementService;
 
 
     // http://localhost:8089/SpringMVC/reglement/add-reglement
     @PostMapping("/add-reglement")
     @ResponseBody
-    public Reglement addReglement(@RequestBody Reglement r) {
-        Reglement reglement = reglementService.addReglement(r);
-        return reglement;
+    public ReglementDto addReglement(@RequestBody ReglementDto reglementDto) {
+        return reglementService.addReglement(reglementDto);
     }
     @GetMapping("/retrieve-all-reglements")
     @ResponseBody
-    public List<Reglement> getReglement() {
-        List<Reglement> list = reglementService.retrieveAllReglements();
-        return list;
+    public List<ReglementDto> getReglement() {
+        return reglementService.retrieveAllReglements();
     }
 
     // http://localhost:8089/SpringMVC/reglement/retrieve-reglement/8
     @GetMapping("/retrieve-reglement/{reglement-id}")
     @ResponseBody
-    public Reglement retrieveReglement(@PathVariable("reglement-id") Long reglementId) {
+    public ReglementDto retrieveReglement(@PathVariable("reglement-id") Long reglementId) {
         return reglementService.retrieveReglement(reglementId);
     }
 
     // http://localhost:8089/SpringMVC/reglement/retrieveReglementByFacture/8
     @GetMapping("/retrieveReglementByFacture/{facture-id}")
     @ResponseBody
-    public List<Reglement> retrieveReglementByFacture(@PathVariable("facture-id") Long factureId) {
-        return reglementService.retrieveReglementByFacture(factureId);
+    public List<ReglementDto> retrieveReglementByFacture(@PathVariable("facture-id") Long factureId) {
+
+         return reglementService.retrieveReglementByFacture(factureId);
     }
 
     // http://localhost:8089/SpringMVC/reglement/getChiffreAffaireEntreDeuxDate/{startDate}/{endDate}

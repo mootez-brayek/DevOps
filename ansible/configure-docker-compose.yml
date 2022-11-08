@@ -1,0 +1,17 @@
+---
+- name: run docker-compose
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Tear down existing services
+      community.docker.docker_compose:
+        project_src: .
+        state: absent
+
+    - name: Create and start services
+      community.docker.docker_compose:
+        project_src: .
+      register: output
+
+    - ansible.builtin.debug:
+        var: output

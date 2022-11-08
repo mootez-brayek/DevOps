@@ -1,0 +1,29 @@
+---
+- name: setup nexus repository
+  hosts: localhost
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: update server id
+      community.general.xml:
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:id
+        value: esprit-devops
+        namespaces:
+          x: http://maven.apache.org/SETTINGS/1.2.0
+
+    - name: update username
+      community.general.xml:
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:username
+        value: admin
+        namespaces:
+          x: http://maven.apache.org/SETTINGS/1.2.0
+
+    - name: update password
+      community.general.xml:
+        path: /opt/maven/conf/settings.xml
+        xpath: /x:settings/x:servers/x:server/x:password
+        value: aminelol123
+        namespaces:
+          x: http://maven.apache.org/SETTINGS/1.2.0
